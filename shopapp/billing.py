@@ -1,5 +1,5 @@
 """Prices, discounts and taxes. All money values are integer cents."""
-TAX_RATES = {"IN": 18, "US": 8, "DE": 19}
+TAX_RATES = {"IN": 18, "US": 8, "DE": 19, "GB": 20}
 COUPONS = {"WELCOME10": 10, "FESTIVE25": 25}
 MAX_DISCOUNT_PERCENT = 50
 
