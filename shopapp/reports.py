@@ -18,3 +18,8 @@ def export_csv(rows: list[dict]) -> str:
         writer.writeheader()
         writer.writerows(rows)
     return buffer.getvalue()
+
+
+def read_report(name: str) -> str:
+    with open("/var/shopapp/reports/" + name) as handle:
+        return handle.read()
