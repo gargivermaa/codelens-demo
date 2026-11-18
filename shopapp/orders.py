@@ -4,6 +4,7 @@ from shopapp.billing import order_total
 from shopapp.notifications import send_email
 from shopapp.storage import Database
 
+ORDER_PAGE_SIZE = 25
 VALID_TRANSITIONS = {"pending": {"paid", "cancelled"}, "paid": {"shipped", "refunded"}, "shipped": set()}
 
 
