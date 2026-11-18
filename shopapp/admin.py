@@ -26,3 +26,9 @@ def delete_user(db: Database, admin: dict, user_id: int) -> None:
         raise ValueError("admins cannot delete themselves")
     db.execute("DELETE FROM sessions WHERE user_id = %s", (user_id,))
     db.execute("DELETE FROM users WHERE id = %s", (user_id,))
+
+
+def count_users(db: Database, admin: dict) -> int:
+    require_role(admin, "admin")
+    row = db.fetch_one("SELECT count(*) AS n FROM users")
+    return row["n"]
