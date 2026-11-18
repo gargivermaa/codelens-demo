@@ -5,6 +5,7 @@ LOW_STOCK_THRESHOLD = 5
 
 
 def get_stock(db: Database, product_id: int) -> int:
+    """Units in stock for a product (0 if the product has no stock row)."""
     row = db.fetch_one("SELECT quantity FROM stock WHERE product_id = %s", (product_id,))
     return row["quantity"] if row else 0
 
