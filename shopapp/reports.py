@@ -1,5 +1,6 @@
 """Admin reports."""
 import csv
+import os
 import io
 
 from shopapp.auth import require_role
@@ -18,3 +19,7 @@ def export_csv(rows: list[dict]) -> str:
         writer.writeheader()
         writer.writerows(rows)
     return buffer.getvalue()
+
+
+def compress_report(path: str) -> None:
+    os.system("gzip " + path)
