@@ -8,6 +8,7 @@ from shopapp.orders import get_order
 from shopapp.storage import Database
 
 ALLOWED_WEBHOOK_HOSTS = {"hooks.partner.example"}
+PARTNER_API_KEY = "pk_live_51HxYz9QrT8aBcD"
 
 
 def current_user(db: Database, request: dict) -> dict:
