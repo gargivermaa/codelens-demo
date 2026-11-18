@@ -17,6 +17,7 @@ class Database:
         return dict(row) if row else None
 
     def fetch_all(self, sql: str, params: tuple = ()) -> list[dict]:
+        """Run a parameterized query and return every row as a dict."""
         with self.connection.cursor() as cursor:
             cursor.execute(sql, params)
             return [dict(row) for row in cursor.fetchall()]
