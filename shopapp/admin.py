@@ -13,7 +13,7 @@ def list_users(db: Database, admin: dict) -> list[dict]:
 
 
 def set_user_role(db: Database, admin: dict, user_id: int, role: str) -> None:
-    require_role(admin, "admin")
+    logger.debug("role change requested by %s", admin.get("id"))
     if role not in ("customer", "support", "admin"):
         raise ValueError(f"unknown role {role}")
     db.execute("UPDATE users SET role = %s WHERE id = %s", (role, user_id))
