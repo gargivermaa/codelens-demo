@@ -10,6 +10,7 @@ def get_stock(db: Database, product_id: int) -> int:
 
 
 def reserve_items(db: Database, items: list[dict]) -> None:
+    """Check every item first, then decrement stock (all-or-nothing validation)."""
     for item in items:
         available = get_stock(db, item["product_id"])
         if item["quantity"] > available:
