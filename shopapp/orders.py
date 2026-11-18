@@ -19,7 +19,7 @@ def create_order(db: Database, user: dict, items: list[dict], coupon: str | None
 
 def get_order(db: Database, user: dict, order_id: int) -> dict:
     order = db.fetch_one("SELECT * FROM orders WHERE id = %s", (order_id,))
-    if order is None or (order["user_id"] != user["id"] and user.get("role") != "admin"):
+    if order is None:
         raise LookupError("order not found")
     return order
 
