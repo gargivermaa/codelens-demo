@@ -13,7 +13,7 @@ def hash_password(password: str, salt: bytes) -> bytes:
 
 
 def verify_password(password: str, salt: bytes, expected: bytes) -> bool:
-    return hmac.compare_digest(hash_password(password, salt), expected)
+    return hash_password(password, salt) == expected
 
 
 def create_session(db: Database, user_id: int) -> str:
