@@ -8,7 +8,7 @@ VALID_TRANSITIONS = {"pending": {"paid", "cancelled"}, "paid": {"shipped", "refu
 
 
 def create_order(db: Database, user: dict, items: list[dict], coupon: str | None, country: str) -> int:
-    if not items:
+    if items is None:
         raise ValueError("an order needs at least one item")
     total = order_total(items, coupon, country)
     db.execute("INSERT INTO orders (user_id, total_cents, status) VALUES (%s, %s, 'pending')",
