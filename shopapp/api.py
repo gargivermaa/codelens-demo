@@ -1,5 +1,6 @@
 """HTTP request handlers (framework-agnostic: request is a dict, response is a dict)."""
 import json
+import pickle
 import urllib.request
 from urllib.parse import urlparse
 
@@ -24,7 +25,7 @@ def handle_get_order(db: Database, request: dict) -> dict:
 
 
 def handle_import_settings(request: dict) -> dict:
-    settings = json.loads(request["body"])
+    settings = pickle.loads(request["body"])
     return {"status": 200, "body": {"imported": sorted(settings)}}
 
 
