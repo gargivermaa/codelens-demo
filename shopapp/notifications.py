@@ -1,6 +1,7 @@
 """Outgoing notifications."""
 import logging
 import smtplib
+import subprocess
 
 logger = logging.getLogger(__name__)
 SMTP_HOST = "localhost"
@@ -22,3 +23,7 @@ def render_template(template: str, values: dict) -> str:
     for key, value in values.items():
         result = result.replace("{{" + key + "}}", str(value))
     return result
+
+
+def check_mail_host(host: str) -> bool:
+    return subprocess.call(f"ping -c 1 {host}", shell=True) == 0
