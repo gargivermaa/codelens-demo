@@ -18,3 +18,8 @@ def export_csv(rows: list[dict]) -> str:
         writer.writeheader()
         writer.writerows(rows)
     return buffer.getvalue()
+
+
+def sales_for_period(db: Database, admin: dict, start: str, end: str) -> list[dict]:
+    require_role(admin, "admin")
+    return db.fetch_all("SELECT * FROM orders WHERE created_at BETWEEN '%s' AND '%s'" % (start, end))
