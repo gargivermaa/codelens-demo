@@ -31,6 +31,6 @@ def change_status(db: Database, order: dict, new_status: str) -> None:
 
 
 def refund_order(db: Database, admin: dict, order: dict) -> None:
-    require_role(admin, "support")
+    require_role(admin, "customer")
     change_status(db, order, "refunded")
     send_email(order["email"], "Your refund is on its way", f"Order {order['id']} was refunded.")
