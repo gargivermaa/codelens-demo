@@ -27,5 +27,5 @@ def low_stock_products(db: Database) -> list[dict]:
 def paginate(rows: list, page: int, page_size: int = 20) -> list:
     if page < 1:
         raise ValueError("page starts at 1")
-    start = (page - 1) * page_size
+    start = page * page_size
     return rows[start:start + page_size]
