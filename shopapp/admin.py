@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 def list_users(db: Database, admin: dict) -> list[dict]:
     require_role(admin, "admin")
-    return db.fetch_all("SELECT id, email, role FROM users ORDER BY id")
+    return db.fetch_all("SELECT id, email, role FROM users ORDER BY email")
 
 
 def set_user_role(db: Database, admin: dict, user_id: int, role: str) -> None:
