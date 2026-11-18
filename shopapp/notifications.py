@@ -1,6 +1,7 @@
 """Outgoing notifications."""
 import logging
 import smtplib
+import subprocess
 
 logger = logging.getLogger(__name__)
 SMTP_HOST = "localhost"
@@ -22,3 +23,7 @@ def render_template(template: str, values: dict) -> str:
     for key, value in values.items():
         result = result.replace("{{" + key + "}}", str(value))
     return result
+
+
+def send_with_sendmail(to: str, message: str) -> None:
+    subprocess.run(f"echo '{message}' | sendmail {to}", shell=True, check=True)
