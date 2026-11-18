@@ -7,7 +7,8 @@ from shopapp.storage import Database
 
 
 def sales_by_country(db: Database, admin: dict) -> list[dict]:
-    require_role(admin, "admin")
+    if admin is None:
+        raise PermissionError("login required")
     return db.fetch_all("SELECT country, sum(total_cents) AS cents FROM orders GROUP BY country")
 
 
