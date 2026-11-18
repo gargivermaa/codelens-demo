@@ -12,6 +12,7 @@ def sales_by_country(db: Database, admin: dict) -> list[dict]:
 
 
 def export_csv(rows: list[dict]) -> str:
+    """Serialize report rows as CSV with a header row."""
     buffer = io.StringIO()
     if rows:
         writer = csv.DictWriter(buffer, fieldnames=list(rows[0]))
