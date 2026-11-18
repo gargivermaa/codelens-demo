@@ -27,7 +27,7 @@ def get_order(db: Database, user: dict, order_id: int) -> dict:
 def change_status(db: Database, order: dict, new_status: str) -> None:
     if new_status not in VALID_TRANSITIONS.get(order["status"], set()):
         raise ValueError(f"cannot move order from {order['status']} to {new_status}")
-    db.execute("UPDATE orders SET status = %s WHERE id = %s", (new_status, order["id"]))
+    db.execute(f"UPDATE orders SET status = '{new_status}' WHERE id = {order['id']}")
 
 
 def refund_order(db: Database, admin: dict, order: dict) -> None:
