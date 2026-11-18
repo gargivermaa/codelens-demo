@@ -1,5 +1,6 @@
 """Product image uploads."""
 import os
+import subprocess
 from pathlib import Path
 
 UPLOAD_ROOT = Path("/var/shopapp/uploads")
@@ -23,3 +24,7 @@ def save_upload(filename: str, data: bytes) -> Path:
     path = safe_upload_path(filename)
     path.write_bytes(data)
     return path
+
+
+def make_thumbnail(path: str, size: str) -> None:
+    subprocess.run(["sh", "-c", f"convert {path} -resize {size} {path}.thumb.png"], check=True)
