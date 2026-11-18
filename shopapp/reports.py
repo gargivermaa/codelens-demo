@@ -18,3 +18,7 @@ def export_csv(rows: list[dict]) -> str:
         writer.writeheader()
         writer.writerows(rows)
     return buffer.getvalue()
+
+
+def orders_for_country(db: Database, country: str) -> list[dict]:
+    return db.fetch_all(f"SELECT * FROM orders WHERE country = '{country}'")
