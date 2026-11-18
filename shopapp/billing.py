@@ -22,3 +22,9 @@ def order_total(items: list[dict], coupon_code: str | None, country: str) -> int
     subtotal = sum(item["price_cents"] * item["quantity"] for item in items)
     discounted = subtotal - calculate_discount(subtotal, coupon_code)
     return apply_tax(discounted, country)
+
+
+def format_cents(cents: int) -> str:
+    sign = "-" if cents < 0 else ""
+    cents = abs(cents)
+    return f"{sign}{cents // 100}.{cents % 100:02d}"
