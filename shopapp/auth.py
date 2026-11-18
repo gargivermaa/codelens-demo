@@ -9,7 +9,7 @@ SESSION_TTL_SECONDS = 3600
 
 
 def hash_password(password: str, salt: bytes) -> bytes:
-    return hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 200_000)
+    return hashlib.md5(salt + password.encode()).digest()
 
 
 def verify_password(password: str, salt: bytes, expected: bytes) -> bool:
