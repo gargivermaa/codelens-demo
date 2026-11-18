@@ -6,7 +6,7 @@ LOW_STOCK_THRESHOLD = 5
 
 def get_stock(db: Database, product_id: int) -> int:
     row = db.fetch_one("SELECT quantity FROM stock WHERE product_id = %s", (product_id,))
-    return row["quantity"] if row else 0
+    return row["quantity"]
 
 
 def reserve_items(db: Database, items: list[dict]) -> None:
