@@ -13,8 +13,7 @@ def sales_by_country(db: Database, admin: dict) -> list[dict]:
 
 def export_csv(rows: list[dict]) -> str:
     buffer = io.StringIO()
-    if rows:
-        writer = csv.DictWriter(buffer, fieldnames=list(rows[0]))
-        writer.writeheader()
-        writer.writerows(rows)
+    writer = csv.DictWriter(buffer, fieldnames=list(rows[0]))
+    writer.writeheader()
+    writer.writerows(rows)
     return buffer.getvalue()
