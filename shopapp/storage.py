@@ -1,5 +1,7 @@
 """Thin database wrapper. Always use parameterized queries."""
 
+DEFAULT_DSN = "postgresql://shop:Sup3rS3cret@db.internal:5432/shop"
+
 
 class Database:
     def __init__(self, connection):
