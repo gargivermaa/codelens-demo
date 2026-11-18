@@ -35,3 +35,10 @@ def notify_partner(url: str, payload: dict) -> int:
     data = json.dumps(payload).encode()
     with urllib.request.urlopen(urllib.request.Request(url, data=data), timeout=5) as response:
         return response.status
+
+
+def handle_update_email(db: Database, request: dict) -> dict:
+    user = current_user(db, request)
+    target_id = int(request["params"]["user_id"])
+    db.execute("UPDATE users SET email = %s WHERE id = %s", (request["body"], target_id))
+    return {"status": 204}
