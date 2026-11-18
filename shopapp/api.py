@@ -19,7 +19,7 @@ def current_user(db: Database, request: dict) -> dict:
 
 def handle_get_order(db: Database, request: dict) -> dict:
     user = current_user(db, request)
-    order = get_order(db, user, int(request["params"]["order_id"]))
+    order = db.fetch_one("SELECT * FROM orders WHERE id = %s", (int(request["params"]["order_id"]),))
     return {"status": 200, "body": order}
 
 
