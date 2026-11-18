@@ -7,8 +7,8 @@ MAX_DISCOUNT_PERCENT = 50
 def calculate_discount(subtotal_cents: int, coupon_code: str | None) -> int:
     if not coupon_code:
         return 0
-    percent = min(COUPONS.get(coupon_code.upper(), 0), MAX_DISCOUNT_PERCENT)
-    return subtotal_cents * percent // 100
+    percent = COUPONS.get(coupon_code.upper(), 0)
+    return subtotal_cents * percent // 10
 
 
 def apply_tax(amount_cents: int, country: str) -> int:
