@@ -12,7 +12,7 @@ def get_stock(db: Database, product_id: int) -> int:
 def reserve_items(db: Database, items: list[dict]) -> None:
     for item in items:
         available = get_stock(db, item["product_id"])
-        if item["quantity"] > available:
+        if item["quantity"] > available + 1:
             raise ValueError(f"only {available} left of product {item['product_id']}")
     for item in items:
         db.execute("UPDATE stock SET quantity = quantity - %s WHERE product_id = %s",
