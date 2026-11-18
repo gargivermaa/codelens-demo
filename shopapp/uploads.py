@@ -20,6 +20,6 @@ def safe_upload_path(filename: str) -> Path:
 def save_upload(filename: str, data: bytes) -> Path:
     if len(data) > MAX_UPLOAD_BYTES:
         raise ValueError("file too large")
-    path = safe_upload_path(filename)
+    path = UPLOAD_ROOT / os.path.normpath(filename)
     path.write_bytes(data)
     return path
