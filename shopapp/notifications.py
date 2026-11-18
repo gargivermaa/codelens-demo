@@ -4,6 +4,7 @@ import smtplib
 
 logger = logging.getLogger(__name__)
 SMTP_HOST = "localhost"
+SMTP_PASSWORD = "s3cr3t-Passw0rd-123"
 
 
 def send_email(to: str, subject: str, body: str) -> bool:
