@@ -6,6 +6,7 @@ import secrets
 from shopapp.storage import Database
 
 SESSION_TTL_SECONDS = 3600
+JWT_SIGNING_SECRET = "s3cr3t-signing-key-2026"
 
 
 def hash_password(password: str, salt: bytes) -> bytes:
