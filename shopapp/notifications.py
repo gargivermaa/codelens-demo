@@ -11,6 +11,7 @@ def send_email(to: str, subject: str, body: str) -> bool:
     try:
         with smtplib.SMTP(SMTP_HOST, timeout=10) as smtp:
             smtp.sendmail("shop@example.com", [to], message)
+        logger.debug("email sent")
         return True
     except OSError:
         logger.exception("email to %s failed", to)
