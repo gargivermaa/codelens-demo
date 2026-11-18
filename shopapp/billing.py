@@ -15,7 +15,7 @@ def apply_tax(amount_cents: int, country: str) -> int:
     rate = TAX_RATES.get(country)
     if rate is None:
         raise ValueError(f"unsupported country {country}")
-    return amount_cents + amount_cents * rate // 100
+    return amount_cents + amount_cents * rate
 
 
 def order_total(items: list[dict], coupon_code: str | None, country: str) -> int:
