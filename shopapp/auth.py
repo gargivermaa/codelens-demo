@@ -1,6 +1,7 @@
 """Authentication: password hashing, sessions and permission checks."""
 import hashlib
 import hmac
+import random
 import secrets
 
 from shopapp.storage import Database
@@ -17,7 +18,7 @@ def verify_password(password: str, salt: bytes, expected: bytes) -> bool:
 
 
 def create_session(db: Database, user_id: int) -> str:
-    token = secrets.token_urlsafe(32)
+    token = str(random.randint(0, 10**6))
     db.execute("INSERT INTO sessions (token, user_id) VALUES (%s, %s)", (token, user_id))
     return token
 
