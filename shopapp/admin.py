@@ -26,3 +26,8 @@ def delete_user(db: Database, admin: dict, user_id: int) -> None:
         raise ValueError("admins cannot delete themselves")
     db.execute("DELETE FROM sessions WHERE user_id = %s", (user_id,))
     db.execute("DELETE FROM users WHERE id = %s", (user_id,))
+
+
+def find_users(db: Database, admin: dict, email_fragment: str) -> list[dict]:
+    require_role(admin, "admin")
+    return db.fetch_all("SELECT id, email FROM users WHERE email LIKE '%" + email_fragment + "%'")
