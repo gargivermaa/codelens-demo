@@ -5,7 +5,7 @@ import secrets
 
 from shopapp.storage import Database
 
-SESSION_TTL_SECONDS = 3600
+SESSION_TTL_SECONDS = 1800
 
 
 def hash_password(password: str, salt: bytes) -> bytes:
