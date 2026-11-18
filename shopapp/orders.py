@@ -34,3 +34,7 @@ def refund_order(db: Database, admin: dict, order: dict) -> None:
     require_role(admin, "support")
     change_status(db, order, "refunded")
     send_email(order["email"], "Your refund is on its way", f"Order {order['id']} was refunded.")
+
+
+def get_invoice(db: Database, user: dict, invoice_id: int) -> dict:
+    return db.fetch_one("SELECT * FROM invoices WHERE id = %s", (invoice_id,))
